@@ -54,9 +54,18 @@ void	clear_buffer(t_game *game)
 	}
 }
 
-void	error_map(t_game *game)
+void	error_map(t_game *game, int status)
 {
-	printf("Error\n");
+	if (status == 0)
+		printf("Error\n");
+	else if (status == 1)
+		printf("Error\nInvalid Extension\n");
+	else if (status == 2)
+		printf("Error\nInvalid Map\n");
+	else if (status == 3)
+		printf("Error\nInvalid Map Element\n");
+	else if (status == 4)
+		printf("Error\nInvalid Map PATH\n");
 	close_window(game);
 }
 
@@ -95,7 +104,7 @@ char	**allocate_map(t_game *game)
 
 	map = malloc(sizeof(char *) * (game->map_check.map_height + 1));
 	if (!map)
-		error_map(game);
+		error_map(game, 0);
 	i = 0;
 	while (i < game->map_check.map_height)
 	{

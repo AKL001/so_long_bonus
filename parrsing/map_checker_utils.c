@@ -20,7 +20,7 @@ void	fill_map(t_game *game, char **argv)
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		error_map(game);
+		error_map(game, 0);
 	i = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
@@ -78,13 +78,13 @@ int	is_map_valid_mandatory(t_game *game, int fd)
 void	check_map_elements(t_game *game, int bonus)
 {
 	if (game->map_check.p != 1)
-		error_map(game);
+		error_map(game, 3);
 	if (game->map_check.e != 1)
-		error_map(game);
+		error_map(game, 3);
 	if (game->map_check.c < 1)
-		error_map(game);
+		error_map(game, 3);
 	if (game->map_check.m < 1 && bonus == 1)
-		error_map(game);
+		error_map(game, 3);
 }
 
 int	check_map_last_line(char **map, int map_width, int map_height)

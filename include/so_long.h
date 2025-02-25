@@ -188,7 +188,7 @@ int				close_window(t_game *game);
 void			cleanup_resources(t_game *game);
 // void			free_map(t_game *game);
 void			cleanup_frames(void *mlx, t_img *frames, int count);
-void			error_map(t_game *game);
+void			error_map(t_game *game, int status);
 
 /* LIBFT */
 int				ft_strcmp(const char *s1, const char *s2);

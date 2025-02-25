@@ -96,14 +96,14 @@ void	map_checker(t_game *game, char **argv)
 	game->map_check.e = 0;
 	game->map_check.c = 0;
 	if (check_map_extension(argv))
-		error_map(game);
+		error_map(game, 1);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		error_map(game);
+		error_map(game, 0);
 	if (is_map_valid_mandatory(game, fd))
 	{
 		close(fd);
-		error_map(game);
+		error_map(game, 2);
 	}
 	close(fd);
 	check_map_elements(game, 1);
@@ -111,7 +111,7 @@ void	map_checker(t_game *game, char **argv)
 	fill_map(game, argv);
 	if (check_map_last_line(game->map, game->map_check.map_width,
 			game->map_check.map_height))
-		error_map(game);
+		error_map(game, 2);
 	if (map_valid_path(game))
-		error_map(game);
+		error_map(game, 4);
 }
